@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>tests</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/${bootstrap.version}/css/bootstrap.min.css" />		
+	
+	<script type="text/javascript" src="/webjars/jquery/${jquery.version}/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/${bootstrap.version}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/webjars/angular-file-upload/${angular-file-upload.version}/angular-file-upload-html5-shim.min.js"></script>
+	<script type="text/javascript" src="/webjars/angularjs/${angularjs.version}/angular.min.js"></script>
+	<script type="text/javascript" src="/webjars/angularjs/${angularjs.version}/angular-route.min.js"></script>
+	<script type="text/javascript" src="/webjars/angular-file-upload/${angular-file-upload.version}/angular-file-upload.min.js"></script>
+	<script type="text/javascript" src="/webjars/angular-ui-bootstrap/${angular-ui-bootstrap.version}/ui-bootstrap.min.js"></script>
+	<script type="text/javascript" src="/webjars/angular-ui-bootstrap/${angular-ui-bootstrap.version}/ui-bootstrap-tpls.min.js"></script>	
+	
+    <script type="text/javascript">
+        $(document).ready(function() {
+           $scope.wowow = "test";
+        });
+    </script>
+</head>
+<body>
+    <span>hello!!! ${scope.wowow}</span>
+</body>
+</html>
