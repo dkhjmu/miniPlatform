@@ -12,6 +12,9 @@ public class AgentInfo implements Serializable{
     private String disk;
     private List<AppStatus> apps = new LinkedList<>();
 
+    public AgentInfo() {
+    }
+
     public AgentInfo(String url, String name, String path, String cpu, String disk) {
         this.url = url;
         this.name = name;
@@ -24,4 +27,47 @@ public class AgentInfo implements Serializable{
         return apps;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
+
+    public String getDisk() {
+        return disk;
+    }
+
+    public void setDisk(String disk) {
+        this.disk = disk;
+    }
+
+    public void setApps(List<AppStatus> apps) {
+        this.apps = apps;
+    }
 }
