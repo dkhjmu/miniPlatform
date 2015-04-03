@@ -44,7 +44,7 @@ public class AgentService {
     public boolean addMinion(final MinionInfo minionInfo){
         minions.put(minionInfo.getName(), minionInfo);
         // trigger a timer to check minion's info
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
         scheduler.scheduleAtFixedRate(new Runnable(){
             public void run() {
                 updateMinionStatus(minionInfo);
