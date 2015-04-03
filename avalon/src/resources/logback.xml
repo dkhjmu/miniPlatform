@@ -6,10 +6,10 @@
         </encoder>
     </appender>
     <appender name="rollingfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-      <file>avalon.txt</file>
+      <file>D:/ALM/logs/avalon.txt</file>
       <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
         <!-- rollover daily -->
-        <fileNamePattern>avalon-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+        <fileNamePattern>D:/ALM/logs/avalon-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
         <timeBasedFileNamingAndTriggeringPolicy
               class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
           <!-- or whenever the file size reaches 100MB -->
@@ -30,6 +30,7 @@
     </logger>
  
      <logger name="healthcheckResult" level="INFO" additivity="false">
+      <appender-ref ref="console" />
       <appender-ref ref="rollingfile" />
     </logger>
  
