@@ -8,6 +8,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sds.mini.platform.minion.domain.MinionInfo;
+import com.sds.mini.platform.util.PropertyUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -23,10 +26,11 @@ import com.sds.mini.platform.minion.domain.MinionInfo;
 public class AgentService {
 
     private Map<String, MinionInfo> minions = new HashMap<>();
-
     private Map<String, ScheduledExecutorService> schedulers = new HashMap<>();
 
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    private final int INTERVAL = Integer.parseInt(PropertyUtils.getProperty("minion.check.interval"));
 
     public Map<String, MinionInfo> getMinions() {
         return minions;
@@ -44,17 +48,21 @@ public class AgentService {
     public boolean addMinion(final MinionInfo minionInfo){
         minions.put(minionInfo.getName(), minionInfo);
         // trigger a timer to check minion's info
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(new Runnable(){
             public void run() {
                 updateMinionStatus(minionInfo);
                 System.out.println("Update minion info : " + getMinion(minionInfo.getName()));
             }
-        }, 0, 3, TimeUnit.SECONDS);
+        }, 0, INTERVAL, TimeUnit.SECONDS);
         schedulers.put(minionInfo.getName(), scheduler);
         return true;
     }
 
+    /**
+     * Minion 에게 상태를 물어보고, I/O 에러 발생하면 DEAD 로 처리한다.
+     * @param minionInfo
+     */
     public void updateMinionStatus(MinionInfo minionInfo) {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpResponse response = httpClient.execute(new HttpGet(minionInfo.getUrl() + "/status"));
@@ -62,10 +70,10 @@ public class AgentService {
             String json = IOUtils.toString(is);
             MinionInfo newMinionInfo = objectMapper.readValue(json, MinionInfo.class);
             minions.put(minionInfo.getName(), newMinionInfo);
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            MinionInfo deadMinion = minions.get(minionInfo.getName());
+            deadMinion.setStatus("DEAD");
         }
     }
 

@@ -2,7 +2,8 @@ package com.sds.mini.platform.web;
 
 import com.sds.mini.platform.minion.domain.MinionInfo;
 import com.sds.mini.platform.minion.domain.MinionStatus;
-import com.sds.mini.platform.avalon.domain.Result;
+import com.sds.mini.platform.minion.domain.Result;
+import com.sds.mini.platform.util.PropertyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,6 @@ import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.util.List;
-import java.util.Properties;
 
 @RestController
 public class MockAgent {
@@ -20,9 +20,7 @@ public class MockAgent {
 
     MockAgent() {
         try {
-            Properties prop = new Properties();
-            prop.load(getClass().getResourceAsStream("/application.properties"));
-            port = prop.getProperty("server.port");
+            port = PropertyUtils.getProperty("server.port");
             url = "http://" + InetAddress.getLocalHost().getHostAddress() + ":" + port;;
         } catch (Exception e) {
         }

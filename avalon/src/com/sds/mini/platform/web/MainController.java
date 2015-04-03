@@ -1,6 +1,5 @@
 package com.sds.mini.platform.web;
 
-import com.sds.mini.platform.avalon.domain.Result;
 import com.sds.mini.platform.minion.domain.MinionInfo;
 import com.sds.mini.platform.minion.service.AgentService;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.LinkedList;
-import java.util.List;
 
 @RestController
 public class MainController {
@@ -34,6 +31,11 @@ public class MainController {
         boolean removed = agentService.removeMinion(minionName);
         if (removed) return minionName + " agent removed.";
         else return minionName + " agent remove failed";
+    }
+
+    @RequestMapping("/minions")
+    public Object status() {
+        return agentService.getMinions();
     }
 
     @RequestMapping("/control/{agent}/{app}/{run}")
