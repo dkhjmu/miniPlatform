@@ -1,4 +1,4 @@
-package com.sds.mini.platform.avalon.domain;
+package com.sds.mini.platform.minion.domain;
 
 import java.io.Serializable;
 
