@@ -1,6 +1,7 @@
 var avalon = angular
 	.module('avalon', [
             	    'ngRoute', 
+            	    'ngResource',
             	    'angularFileUpload', 
             	    'ui.bootstrap',
             	    'mainControllers',

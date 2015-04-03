@@ -1,37 +1,24 @@
 var appsControllers = angular.module('appsControllers', []);
-appsControllers.factory('Agents', function ($resource) {
-    var Agents = $resource('http://192.168.43.146:20308/status', null, {
+appsControllers.factory('MockAgent', function ($resource) {
+    var MockAgent = $resource('http://127.0.0.1:20308/status/', null, { //192.168.43.146
     	query: {method: 'GET', isArray: false }
     });
-    return Agents;
+    return MockAgent;
   });
-appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'Agents', function($scope, $http, $interval, Agents) {
+appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'MockAgent', function($scope, $http, $interval, MockAgent) {
 	console.log("Agents call..");
-	$scope.agentInfo = Agents.query(function(agent){ // 호출시 추가할 파라미터는 없고 {}, 성공 시 콜백 추가 
-      console.log(agents.name + ", " + agents.url + "");
+	$scope.mockAgent = MockAgent.query(function(data){ 
+      $scope.agent = {
+    		  name: data.name, 
+    		  url: data.url,
+    	      path: data.path,
+    	      cpu: data.cpu,
+    	      disk: data.disk
+      };
+      
+      $scope.minions = data.apps;
     });
-    
-//    $scope.agents = [
-//                     {
-//                    	 name: "Agent1",
-//                    	 url: "192.168.43.146:20308",
-//                    	 path: "path",
-//                    	 cpu: "cpu",
-//                    	 disk: "disk"
-//                     },
-//                     {
-//                    	 name: "Agent2",
-//                    	 url: "192.168.43.146:20308",
-//                    	 path: "path",
-//                    	 cpu: "cpu",
-//                    	 disk: "disk"
-//                     },
-//                     {
-//                    	 name: "Agent3",
-//                    	 url: "192.168.43.146:20308",
-//                    	 path: "path",
-//                    	 cpu: "cpu",
-//                    	 disk: "disk"
-//                     }
-//                     ];
+	
+	
+   
 }]);

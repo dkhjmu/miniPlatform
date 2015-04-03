@@ -9,6 +9,10 @@
 			Agent Cpu: {{agent.cpu}}<br />
 			Agent Disk: {{agent.disk}}<br />
 		</div>
+		
+		<div ng-repeat="minion in minions">
+			{{minion.type}} {{minion.name}}
+		</div>
 
 	</div>
 </div>

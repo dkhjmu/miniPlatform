@@ -3,15 +3,17 @@
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  padding: 6px 20px;
+  padding: 18px 34px;
   border: none;
   -webkit-border-radius: 32px / 54px;
-  border-radius: 32px / 54px;
+  border-radius: 48px / 50px;
   font: normal 18px/normal "Coda", Helvetica, sans-serif;
   color: rgba(0,142,198,1);
+  line-height: 140%;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  background: rgba(252,252,252,1);
+  /* background: rgba(252,252,252,1); */
+  background: #e2eef9;
   -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2) inset;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2) inset;
   text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
