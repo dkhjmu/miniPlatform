@@ -11,7 +11,7 @@ import com.sds.mini.platform.avalon.service.AppService;
 @SpringBootApplication
 public class Application {
 
-	// main
+	// main COMMIT TEST
     public static void main(String[] args) {
     	
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
