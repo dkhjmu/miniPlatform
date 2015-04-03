@@ -1,29 +1,36 @@
 var appsControllers = angular.module('appsControllers', []);
 appsControllers.factory('AgentList', function ($resource) {
-    var AgentList = $resource('http://127.0.0.1:20308/minions/', null, { //192.168.43.146
+    var AgentList = $resource('http://192.168.43.104:20308/minions/', null, { 
     	query: {method: 'GET', isArray: false }
     });
     return AgentList;
   });
 appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'AgentList', function($scope, $http, $interval, AgentList) {
 	console.log("Agents call..");
-//	$scope.agentList = AgentList.query(function(data){ 
-//		angular.forEach(data, function(value, name) {
-//			  console.log(name + ': ' + value);
-//			  console.log(value.name);
-//			});
-	$scope.agentList = [];
-	$scope.appsList = [];
-	//$interval(function() {
-        
-      
-	AgentList.query(function(data){ 
-		var values = data;
-		angular.forEach(values, function(value, key) {
-			  this.push(value);
+	
+	var getAgentList = function() {
+		$scope.agentList = [];
+		$scope.appsList = [];
+		
+		AgentList.query(function(data){ 
+			angular.forEach(data, function(value, key) {
+				if(value.name != null) {
+					this.push(value);
+				}
 			}, $scope.agentList);
-	});
-	//}, 10000);
+		});
+	};
+	
+	getAgentList();
+	
+	var refresh = $interval(function() {
+		getAgentList();
+	}, 10000);
+	
+	$scope.$on('$destroy', function() {
+		$interval.cancel(refresh);
+    });
+	
 	$scope.start = function(agentName, appName) {
 		console.log("시작합니다. " + agentName + ", " +  appName);
 		var startUrl = 'http://192.168.43.146:20308/control/' + agentName + '/' + appName + "/start"; 
@@ -57,19 +64,5 @@ appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'Agent
 			  console.log("실패 ");
 		  });
 	};
-		
-		
-//      $scope.agent = {
-//    		  name: data.name, 
-//    		  url: data.url,
-//    	      path: data.path,
-//    	      cpu: data.cpu,
-//    	      disk: data.disk
-//      };
-//      
-//      $scope.minions = data.apps;
-//      $scope.test = data;
-
-	
    
 }]);
