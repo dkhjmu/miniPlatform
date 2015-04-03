@@ -24,8 +24,6 @@
 		<angular-ui-bootstrap.version>0.10.0</angular-ui-bootstrap.version>
 		<angular-file-upload.version>1.2.5</angular-file-upload.version>
 
-
-		<start-class>ac.simons.biking2.Application</start-class>
 	</properties>
 
 	<!-- Inherit defaults from Spring Boot -->
@@ -105,9 +103,6 @@
 			<artifactId>angular-file-upload</artifactId>
 			<version>${angular-file-upload.version}</version>
 		</dependency>
-
-
-
 	</dependencies>
 
 
