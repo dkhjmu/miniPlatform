@@ -7,6 +7,7 @@ import java.util.List;
 public class MinionInfo implements Serializable{
     private String url;
     private String name;
+    private String status = "LIVE";
     private String path;
     private String cpu;
     private String memory;
@@ -81,11 +82,20 @@ public class MinionInfo implements Serializable{
         this.apps = apps;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "MinionInfo{" +
+        return "Minion{" +
                 "url='" + url + '\'' +
                 ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
                 ", path='" + path + '\'' +
                 ", cpu='" + cpu + '\'' +
                 ", memory='" + memory + '\'' +
