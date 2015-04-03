@@ -71,30 +71,16 @@ public class AgentService {
 
     /**
      * Minion 을 관리 목록에서 제거하고 타이머를 멈춘다.
-     * @param minionInfo
+     * @param minionName
      * @return
      */
-    public boolean removeMinion(MinionInfo minionInfo){
-        minions.remove(minionInfo.getName());
+    public boolean removeMinion(String minionName){
+        minions.remove(minionName);
         // stop to check a minion's info
-        ScheduledExecutorService scheduler = schedulers.get(minionInfo.getName());
+        ScheduledExecutorService scheduler = schedulers.get(minionName);
         scheduler.shutdownNow();
-        schedulers.remove(minionInfo.getName());
+        schedulers.remove(minionName);
         return true;
-    }
-
-    /**
-     * Agent 가 내려갔는지 체크
-     *
-     * @param minionInfo
-     * @return
-     */
-    public boolean isAlive(MinionInfo minionInfo) {
-        String json = executeUrl(minionInfo.getUrl() + "/healthCheck");
-        if(json != null) {
-            return true;
-        }
-        return false;
     }
 
     public String executeUrl(String url) {
@@ -109,9 +95,9 @@ public class AgentService {
         return null;
     }
 
-    public String controlAgent(String app, String run) {
-        MinionInfo minionInfo = minions.get(app);
-        if("start".equalsIgnoreCase(run) || "stop".equalsIgnoreCase(run)) {
+    public String controlAgent(String agent, String app, String run) {
+        MinionInfo minionInfo = minions.get(agent);
+        if("start".equalsIgnoreCase(run) || "stop".equalsIgnoreCase(run)|| "restart".equalsIgnoreCase(run)) {
             String result = executeUrl(minionInfo.getUrl() + "/run/" + app + "/" + run);
             System.out.printf("Complete - ", app, run + " : Result - " + result);
             return result;

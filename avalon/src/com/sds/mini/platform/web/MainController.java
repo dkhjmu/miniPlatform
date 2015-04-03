@@ -29,8 +29,16 @@ public class MainController {
         else return minionInfo.getName() + " agent add failed";
     }
 
-    @RequestMapping("/control/{app}/{run}")
-    public String run(@PathVariable("app") String app, @PathVariable("run") String run) {
-        return agentService.controlAgent(app, run);
+    @RequestMapping("/checkOut/{minionName}")
+    public String checkIn(@PathVariable("minionName") String minionName) {
+        boolean removed = agentService.removeMinion(minionName);
+        if (removed) return minionName + " agent removed.";
+        else return minionName + " agent remove failed";
     }
+
+    @RequestMapping("/control/{agent}/{app}/{run}")
+    public String run(@PathVariable("agent") String agentName, @PathVariable("app") String app, @PathVariable("run") String run) {
+        return agentService.controlAgent(agentName, app, run);
+    }
+
 }
