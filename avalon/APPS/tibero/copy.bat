@@ -1,1 +1,0 @@
-copy /y C:\Users\SDS\git\miniPlatform\avalon\src\webapp\public\js\*.js C:\Users\SDS\git\miniPlatform\avalon\target\classes\webapp\public\js
