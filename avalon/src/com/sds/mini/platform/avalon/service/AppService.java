@@ -17,6 +17,7 @@ public class AppService {
 		init();
 	}
 	
+	//test
 	private AppService(){
 		groups = new ArrayList<GroupInfo>();
 		apps = new ArrayList<AppInfo>();
