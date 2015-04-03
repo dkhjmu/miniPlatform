@@ -22,9 +22,9 @@ var avalon = angular
 			    	templateUrl: '/partials/monitor.html',
 			    	controller: 'monitorCtrl'
 			    }).
-			    when('/apps', {
-			    	templateUrl: '/partials/apps.html',
-			    	controller: 'appsCtrl'
+			    when('/agents', {
+			    	templateUrl: '/partials/agents.html',
+			    	controller: 'agentsCtrl'
 			    }).
 			    when('/settings', {
 				templateUrl: '/partials/settings.html',
