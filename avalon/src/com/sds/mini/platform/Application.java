@@ -6,8 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.sds.mini.platform.avalon.service.AppService;
-
 @SpringBootApplication
 public class Application {
 
@@ -23,9 +21,7 @@ public class Application {
         for (String beanName : beanNames) {
             System.out.println(beanName);
         }
-        
-        AppService.init();
-        
+
         System.out.println("Everyone~ Wake up!");
     }
 
