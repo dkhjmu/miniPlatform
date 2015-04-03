@@ -13,9 +13,9 @@ public class AppService {
 	ArrayList<GroupInfo> groups;
 	ArrayList<AppInfo> apps;
 	
-	public static void main(String[] args) {
-		init();
-	}
+//	public static void main(String[] args) {
+//		init();
+//	}
 	
 	//test
 	private AppService(){
