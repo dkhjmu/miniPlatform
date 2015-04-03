@@ -1,6 +1,6 @@
 package com.sds.mini.platform.domain;
 
-import com.sds.mini.platform.minion.domain.GroupInfo;
+import com.sds.mini.platform.avalon.domain.GroupInfo;
 
 public class Info {
 	String name;

@@ -1,10 +1,10 @@
-package com.sds.mini.platform.minion.service;
+package com.sds.mini.platform.avalon.service;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import com.sds.mini.platform.minion.domain.AppInfo;
-import com.sds.mini.platform.minion.domain.GroupInfo;
+import com.sds.mini.platform.avalon.domain.AppInfo;
+import com.sds.mini.platform.avalon.domain.GroupInfo;
 
 public class AppService {
 	
@@ -21,7 +21,11 @@ public class AppService {
 		groups = new ArrayList<GroupInfo>();
 		apps = new ArrayList<AppInfo>();
 		
-		String appRootPath = "D:/java/work/TTT/avalon/APPS";
+		String tmpPath=System.getProperty("avalon.root");
+		String appRootPath = "D:/ALM/APPS";
+		if(tmpPath!=null){
+			appRootPath = tmpPath;
+		}
 		GroupInfo rootGroup = new GroupInfo("root", appRootPath);
 		File root = new File(appRootPath);
 		if(!root.exists()){
@@ -37,8 +41,8 @@ public class AppService {
 				groups.add(loadGroup(rootGroup, f));
 			}
 		}
-		System.out.println(groups.size());
-		System.out.println(apps.size());
+		System.out.println("Loaded Group:"+groups.size());
+		System.out.println("Loaded Apps:"+apps.size());
 		System.out.println("load ok!");
 	}
 	

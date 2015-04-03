@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.sds.mini.platform.minion.service.AppService;
+import com.sds.mini.platform.avalon.service.AppService;
 
 @SpringBootApplication
 public class Application {
