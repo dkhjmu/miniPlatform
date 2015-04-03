@@ -2,6 +2,7 @@ package com.sds.mini.platform.avalon.service;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.sds.mini.platform.avalon.domain.AppInfo;
 import com.sds.mini.platform.avalon.domain.GroupInfo;
@@ -94,5 +95,9 @@ public class AppService {
 			init();
 		}
 		return appService;
+	}
+
+	public List<AppInfo> allApps() {
+		return apps;
 	}
 }
