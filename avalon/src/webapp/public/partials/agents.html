@@ -1,18 +1,33 @@
 <div class="row">
 	<div class="col-md-12">
 		<h2>AGENTS</h2>
-<!-- <input type="text" class="enjoy-css" /> -->
-		<div class="enjoy-css">
+	<div class="enjoy-css" ng-repeat="agent in agentList" >
+		
 			Agent Name: {{agent.name}}<br /> 
 			Agent Url: {{agent.url}}<br />
 			Agent Path: {{agent.path}}<br />
 			Agent Cpu: {{agent.cpu}}<br />
 			Agent Disk: {{agent.disk}}<br />
-		</div>
-		
-		<div ng-repeat="minion in minions">
-			{{minion.type}} {{minion.name}}
-		</div>
-
+			Agent Memory: {{agent.memory}}<br />
+			<span ng-class="{red: agent.status == 'DEAD'}">Agent Status: {{agent.status}}<br /></span>
+			<ul>
+					<li ng-repeat="app in agent.apps">
+					
+			Agent Apps: {{app.name}}, {{app.status}}
+			
+			<span ng-show="app.status == 'DEAD'"><button ng-click="start(agent.name, app.name)">시작</button></span>
+			<span ng-show="app.status == 'RUN'"><button ng-click="stop(agent.name, app.name)">정지</button><button ng-click="restart(agent.name, app.name)">재시작</button></span>
+			
+			
+			</li>
+			</ul>
+				<!-- <ul>
+					<li ng-repeat="app in appsList">
+		App Name: {{app.name}}, 
+		App Status: {{app.status}},
+		App Type: {{app.type}}  </li>
+				</ul> -->
 	</div>
+
+</div>
 </div>
