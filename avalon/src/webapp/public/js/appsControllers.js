@@ -8,24 +8,50 @@ appsControllers.factory('AgentList', function ($resource) {
 appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'AgentList', function($scope, $http, $interval, AgentList) {
 	console.log("Agents call..");
 	
+	$scope.indicatorOption = {
+            radius : 30,
+            percentage :true,
+            barColor : "#87CEEB",
+    };
+	$scope.indicatorValue = 70;
+     
 	var getAgentList = function() {
 		$scope.agentList = [];
 		$scope.appsList = [];
+		var agent = {
+				name : "test",
+				url : "http://70.121.224.19",
+				path : "/Volumn/scout/agent",
+				status : "DEAD",
+				apps : [
+						{name : "111", status:"DEAD"},
+						{name : "222", status:"RUN"}
+				]
+		};
+		$scope.agentList.push(agent);
+		var agent = {
+				name : "test1",
+				url : "http://70.121.242.19",
+				path : "/Volumn/scout",
+				status : "RUN",
+		};
+		$scope.agentList.push(agent);
 		
-		AgentList.query(function(data){ 
+		
+		/*AgentList.query(function(data){ 
 			angular.forEach(data, function(value, key) {
 				if(value.name != null) {
 					this.push(value);
 				}
 			}, $scope.agentList);
-		});
+		});*/
 	};
 	
 	getAgentList();
 	
-	var refresh = $interval(function() {
+	/*var refresh = $interval(function() {
 		getAgentList();
-	}, 1000);
+	}, 1000);*/
 	
 	$scope.$on('$destroy', function() {
 		$interval.cancel(refresh);
@@ -64,5 +90,5 @@ appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'Agent
 			  console.log("실패 ");
 		  });
 	};
-   
+	
 }]);
