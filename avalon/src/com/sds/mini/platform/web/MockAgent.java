@@ -37,7 +37,7 @@ public class MockAgent {
         File file = new File("/");
         long disk = file.getTotalSpace() - file.getFreeSpace();
         String diskUsage = (disk / 1024 / 1024) + " mb";
-        MinionInfo minionInfo = new MinionInfo(url, "agent1", new File("").getAbsolutePath(), cpu + "", memory + "", diskUsage);
+        MinionInfo minionInfo = new MinionInfo(url, "agent2", new File("").getAbsolutePath(), cpu + "", memory + "", diskUsage);
         List<MinionStatus> apps = minionInfo.getApps();
         MinionStatus app1 = new MinionStatus("tibero", "DB", "DEAD");
         MinionStatus app2 = new MinionStatus("oracle","DB", "DEAD");

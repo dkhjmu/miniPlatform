@@ -1,0 +1,41 @@
+<div class="row">
+ <div class="col-md-12">
+  <h2>AGENTS</h2>
+   <div ng-repeat="agent in agentList">
+   	Agent Name: {{agent.name}}<br /> 
+	Agent Url: {{agent.url}}<br />
+	<span ng-class="{red: agent.status == 'DEAD'}">Agent Status: {{agent.status}}<br /></span>
+	Agent Path: {{agent.path}}<br />
+	Agent Cpu: {{agent.cpu}}<br />
+	Agent Memory: {{agent.memory}}<br />	
+	Agent Disk: {{agent.disk}}<br />
+	<ul>
+	 <li ng-repeat="app in agent.apps">
+	  Agent Apps: {{app.name}}, {{app.status}}
+	  <span ng-show="app.status == 'DEAD'"><button ng-click="start(agent.name, app.name)">시작</button></span>
+	  <span ng-show="app.status == 'RUN'"><button ng-click="stop(agent.name, app.name)">정지</button><button ng-click="restart(agent.name, app.name)">재시작</button></span>
+	 </li>
+	</ul>
+   </div>
+   
+<!-- 	<div class="panel-group" id="accordion">
+        <div class="panel panel-default" ng-repeat="agent in agentList">
+            <div class="panel-heading" ng-class="{warning: agent.status == 'DEAD'}">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#{{agent.name}}">{{agent.name | uppercase}}</a>
+                </h4>
+            </div>
+            <div id="{{agent.name}}" class="panel-collapse collapse in">
+                <div class="panel-body">
+                Agent Url: {{agent.url}}<br />
+	Agent Path: {{agent.path}}<br />
+	Agent Cpu: {{agent.cpu}}<br />
+	Agent Disk: {{agent.disk}}<br />
+	Agent Memory: {{agent.memory}}<br />
+	<span ng-class="{red: agent.status == 'DEAD'}">Agent Status: {{agent.status}}</span>
+                    <p>{{agent.url}} HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages. <a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank">Learn more.</a></p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
