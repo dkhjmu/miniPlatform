@@ -1,33 +1,33 @@
 <div class="row">
  <div class="col-md-12" style="padding-top: 20px;">
-  <h2 style="padding-left: 90px;border-bottom-style: groove;padding-bottom: 10px;">AGENTS<img ng-src="./img/minion4_720.png" style="width: 100px;"></img></h2> 
+  <h2 style="padding-left: 90px;border-bottom-style: groove;padding-bottom: 10px;">Dashboard<img ng-src="./img/minion4_720.png" style="width: 100px;"></img></h2> 
    <div ng-repeat="agent in agentList" class="col-md-12" style="padding-top:10px;padding-bottom:10px;border: azure;border-bottom-style: groove;">
 	   <div class="col-md-3">
-	   		<div class="col-md-12" style="text-align:center;font-size: 25px;font-family: fantasy;">
+	   		<div class="col-md-12" style="text-align:center;font-size: 25px;">
 			   	{{agent.name}} 
 	   		</div>
 	   		<div class="col-md-12">
-	   			<img ng-src="./img/circle_yellow.jpg" ng-show="agent.status == 'RUN'" style="padding-left: 6px;width: 100px;margin-left: 57px;"></img>
-	   			<img ng-src="./img/circle.jpg" ng-show="agent.status == 'DEAD'" style="padding-left: 6px;width: 100px;margin-left: 57px;"></img>
+	   			<img ng-src="/img/heart.gif" ng-show="agent.status == 'LIVE'" style="width: 100px;"></img>
+	   			<img ng-src="/img/skull.jpg" ng-show="agent.status == 'DEAD'" style="width: 100px;margin-top:20px;"></img>
 	   		</div>
 	   </div>
 	   	<div class="col-md-9">
 		   	<div class="col-md-12" style="text-align:left;font-size: 15px;bottom: 5px;">
-		   		Agent Url: {{agent.url}}
+		   		URL - {{agent.url}}
 		   	</div>
 		   	<div class="col-md-12" style="text-align:left;font-size: 15px;bottom: 5px;">
-		   		Agent Path: {{agent.path}}
+		   		PATH - {{agent.path}}
 		   	</div>
 		   	<div class="col-md-4" style="text-align: center;">
-			   	<div data-radial-indicator="indicatorOption" data-radial-indicator-model="indicatorValue"></div>
+			   	<div data-radial-indicator="indicatorPercentage" data-radial-indicator-model="agent.cpu"></div>
 			   	CPU
 		   	</div>
 		   	<div class="col-md-4" style="text-align: center;">
-			   	<div data-radial-indicator="indicatorOption" data-radial-indicator-model="indicatorValue"></div>
+			   	<div data-radial-indicator="indicatorPercentage" data-radial-indicator-model="agent.memory"></div>
 		   		MEMORY
 		   	</div>
 		   	<div class="col-md-4" style="text-align: center;">
-			   	<div data-radial-indicator="indicatorOption" data-radial-indicator-model="indicatorValue"></div>
+			   	<div data-radial-indicator="indicatorPercentage" data-radial-indicator-model="agent.disk"></div>
 		   		DISK
 		   	</div>
 	   </div>
@@ -36,20 +36,28 @@
 			<div class="col-md-9">
 				<ul>
 				 <li ng-repeat="app in agent.apps" style="padding-top: 10px;">
-				  <span ng-show="app.status == 'DEAD'">
-					  <button type="button" style="background-color: darkturquoise;" class="btn btn-default btn-sm" ng-click="start(agent.name, app.name)">
-	  					Start
-					  </button>
-				  </span>
-				  <span ng-show="app.status == 'RUN'">
-					  <button type="button" style="background-color: darkturquoise;" class="btn btn-default btn-sm" ng-click="stop(agent.name, app.name)">
+				  
+				  {{app.name}}(
+				  <span ng-if="app.type == 'web'" class="glyphicon glyphicon-inbox"></span>
+				  <span ng-if="app.type == 'db'" class="glyphicon glyphicon-hdd"></span>
+				  ) - 
+				  <span ng-if="app.status == 'LIVE'"><img src="/img/blue.png" width="30px"/></span>
+				  <span ng-if="app.status == 'DEAD'"><img src="/img/red.png" width="30px"/></span>			  
+				  <!-- 
+				  {{app.status}} -->
+				  <span ng-show="app.status == 'LIVE'">
+					  <button type="button" class="btn btn-default btn-xs" ng-click="stop(agent.name, app.name)">
 	  					PAUSE
 					  </button>
-					  <button type="button" style="background-color: darkturquoise;" class="btn btn-default btn-sm" ng-click="restart(agent.name, app.name)">
+					  <button type="button" class="btn btn-default btn-xs" ng-click="restart(agent.name, app.name)">
 	  					RESTART
 					  </button>
 				  </span>
-				  Agent Apps: {{app.name}}, {{app.status}}
+				  <span ng-show="app.status == 'DEAD'">
+					  <button type="button" class="btn btn-default btn-xs" ng-click="start(agent.name, app.name)">
+	  					START
+					  </button>
+				  </span>
 				 </li>
 				</ul>
 			</div>

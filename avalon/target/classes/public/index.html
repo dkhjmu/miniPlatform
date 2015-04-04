@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  data-ng-app="avalon">
+<html data-ng-app="avalon">
 <head>
 <meta charset="UTF-8">
 <title>Avalon</title>
@@ -23,6 +23,9 @@
 	<script src="/js/appsControllers.js"></script>
 	<script src="/js/monitorControllers.js"></script>
 	<script src="/js/settingsControllers.js"></script>
+	<script src="/js/angular.radialIndicator.js"></script>
+	<script src="/js/radialIndicator.js"></script>
+	
 <style>
 * {
     font-family: "PT Sans";
@@ -31,9 +34,9 @@
     padding: 0 auto;
    	text-align: center;
 }
-	<script src="/js/angular.radialIndicator.js"></script>
-	<script src="/js/radialIndicator.js"></script>
-
+ul {
+list-style: none;
+}
 </style>
 </head>
 <body role="document">
@@ -60,7 +63,7 @@
 	</nav>
 	<br>
 	<div class="container">
-	    <div data-ng-view></div>
+	    <div data-ng-view ng-cloak></div>
 	    <hr />
 	    <footer>
 		<div>

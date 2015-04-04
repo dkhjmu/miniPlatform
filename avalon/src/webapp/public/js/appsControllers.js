@@ -8,6 +8,20 @@ appsControllers.factory('AgentList', function ($resource) {
 appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'AgentList', function($scope, $http, $interval, AgentList) {
 	console.log("Agents call..");
 	
+
+	
+	$scope.indicatorPercentage = {
+		radius : 30,
+		percentage :true,
+		barColor : "#87CEEB",
+	};
+	$scope.indicatorCount = {
+			radius : 30,
+			percentage :false,
+			barColor : "#87CEEB",
+		};
+	$scope.indicatorValue = 70;
+			
 	var getAgentList = function() {
 		$scope.agentList = [];
 		$scope.appsList = [];
@@ -25,11 +39,22 @@ appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'Agent
 	
 	var refresh = $interval(function() {
 		getAgentList();
-	}, 1000);
+	}, 5000);
 	
 	$scope.$on('$destroy', function() {
 		$interval.cancel(refresh);
     });
+	
+//	$scope.remove = function(agentName) {
+//		$http.post('http://192.168.43.104:20308/checkOut/' + agentName).
+//		  success(function(data, status, headers, config) {
+//		    console.log("성공 ");
+//		    $scope.agentList.remove(agentName);
+//		  }).
+//		  error(function(data, status, headers, config) {
+//			  console.log("실패 ");
+//		  });
+//	};
 	
 	$scope.start = function(agentName, appName) {
 		console.log("시작합니다. " + agentName + ", " +  appName);
