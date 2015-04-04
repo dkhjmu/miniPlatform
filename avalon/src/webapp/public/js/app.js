@@ -14,24 +14,25 @@ var avalon = angular
 		    $locationProvider.html5Mode(true);
 
 		    $routeProvider.
-			    when('/main', {
+			    when('/Avalon', {
 				templateUrl: '/partials/main.html',
 				controller: 'mainCtrl'
 			    }).
-			    when('/monitor', {
-			    	templateUrl: '/partials/monitor.html',
-			    	controller: 'monitorCtrl'
-			    }).
-			    when('/agents', {
+			    when('/Merlins', {
 			    	templateUrl: '/partials/agents.html',
 			    	controller: 'agentsCtrl'
 			    }).
+			    when('/Minions', {
+			    	templateUrl: '/partials/monitor.html',
+			    	controller: 'monitorCtrl'
+			    }).
+			    
 			    when('/settings', {
 				templateUrl: '/partials/settings.html',
 				controller: 'settingsCtrl'
 			    }).
 			    otherwise({
-				redirectTo: '/main'
+				redirectTo: '/Avalon'
 			    });
 		}
 	)
