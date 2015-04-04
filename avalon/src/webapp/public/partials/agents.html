@@ -1,14 +1,14 @@
 <div class="row">
  <div class="col-md-12">
   <h2>AGENTS</h2>
-   <div ng-class="enjoy-css" ng-repeat="agent in agentList">
+   <div ng-repeat="agent in agentList">
    	Agent Name: {{agent.name}}<br /> 
 	Agent Url: {{agent.url}}<br />
+	<span ng-class="{red: agent.status == 'DEAD'}">Agent Status: {{agent.status}}<br /></span>
 	Agent Path: {{agent.path}}<br />
 	Agent Cpu: {{agent.cpu}}<br />
+	Agent Memory: {{agent.memory}}<br />	
 	Agent Disk: {{agent.disk}}<br />
-	Agent Memory: {{agent.memory}}<br />
-	<span ng-class="{red: agent.status == 'DEAD'}">Agent Status: {{agent.status}}<br /></span>
 	<ul>
 	 <li ng-repeat="app in agent.apps">
 	  Agent Apps: {{app.name}}, {{app.status}}
