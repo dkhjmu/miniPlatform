@@ -7,7 +7,8 @@ var avalon = angular
             	    'mainControllers',
             	    'appsControllers',
             	    'monitorControllers',
-            	    'settingsControllers'
+            	    'settingsControllers',
+            	    'radialIndicator'
             	])
 	.config(
 		function($routeProvider, $locationProvider) {

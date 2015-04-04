@@ -1,20 +1,59 @@
 <div class="row">
- <div class="col-md-12">
-  <h2>AGENTS</h2>
-   <div ng-repeat="agent in agentList">
-   	Agent Name: {{agent.name}}<br /> 
-	Agent Url: {{agent.url}}<br />
-	<span ng-class="{red: agent.status == 'DEAD'}">Agent Status: {{agent.status}}<br /></span>
-	Agent Path: {{agent.path}}<br />
-	Agent Cpu: {{agent.cpu}}<br />
-	Agent Memory: {{agent.memory}}<br />	
-	Agent Disk: {{agent.disk}}<br />
-	<ul>
-	 <li ng-repeat="app in agent.apps">
-	  Agent Apps: {{app.name}}, {{app.status}}
-	  <span ng-show="app.status == 'DEAD'"><button ng-click="start(agent.name, app.name)">시작</button></span>
-	  <span ng-show="app.status == 'RUN'"><button ng-click="stop(agent.name, app.name)">정지</button><button ng-click="restart(agent.name, app.name)">재시작</button></span>
-	 </li>
-	</ul>
+ <div class="col-md-12" style="padding-top: 20px;">
+  <h2 style="padding-left: 90px;border-bottom-style: groove;padding-bottom: 10px;">AGENTS<img ng-src="./img/minion4_720.png" style="width: 100px;"></img></h2> 
+   <div ng-repeat="agent in agentList" class="col-md-12" style="padding-top:10px;padding-bottom:10px;border: azure;border-bottom-style: groove;">
+	   <div class="col-md-3">
+	   		<div class="col-md-12" style="text-align:center;font-size: 25px;font-family: fantasy;">
+			   	{{agent.name}} 
+	   		</div>
+	   		<div class="col-md-12">
+	   			<img ng-src="./img/circle_yellow.jpg" ng-show="agent.status == 'RUN'" style="padding-left: 6px;width: 100px;margin-left: 57px;"></img>
+	   			<img ng-src="./img/circle.jpg" ng-show="agent.status == 'DEAD'" style="padding-left: 6px;width: 100px;margin-left: 57px;"></img>
+	   		</div>
+	   </div>
+	   	<div class="col-md-9">
+		   	<div class="col-md-12" style="text-align:left;font-size: 15px;bottom: 5px;">
+		   		Agent Url: {{agent.url}}
+		   	</div>
+		   	<div class="col-md-12" style="text-align:left;font-size: 15px;bottom: 5px;">
+		   		Agent Path: {{agent.path}}
+		   	</div>
+		   	<div class="col-md-4" style="text-align: center;">
+			   	<div data-radial-indicator="indicatorOption" data-radial-indicator-model="indicatorValue"></div>
+			   	CPU
+		   	</div>
+		   	<div class="col-md-4" style="text-align: center;">
+			   	<div data-radial-indicator="indicatorOption" data-radial-indicator-model="indicatorValue"></div>
+		   		MEMORY
+		   	</div>
+		   	<div class="col-md-4" style="text-align: center;">
+			   	<div data-radial-indicator="indicatorOption" data-radial-indicator-model="indicatorValue"></div>
+		   		DISK
+		   	</div>
+	   </div>
+		<div ng-show="agent.apps.length > 0">
+			<div class="col-md-3"></div>
+			<div class="col-md-9">
+				<ul>
+				 <li ng-repeat="app in agent.apps" style="padding-top: 10px;">
+				  <span ng-show="app.status == 'DEAD'">
+					  <button type="button" style="background-color: darkturquoise;" class="btn btn-default btn-sm" ng-click="start(agent.name, app.name)">
+	  					Start
+					  </button>
+				  </span>
+				  <span ng-show="app.status == 'RUN'">
+					  <button type="button" style="background-color: darkturquoise;" class="btn btn-default btn-sm" ng-click="stop(agent.name, app.name)">
+	  					PAUSE
+					  </button>
+					  <button type="button" style="background-color: darkturquoise;" class="btn btn-default btn-sm" ng-click="restart(agent.name, app.name)">
+	  					RESTART
+					  </button>
+				  </span>
+				  Agent Apps: {{app.name}}, {{app.status}}
+				 </li>
+				</ul>
+			</div>
+		</div>
    </div>
+   
 </div>

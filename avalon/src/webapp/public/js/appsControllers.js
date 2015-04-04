@@ -25,34 +25,43 @@ appsControllers.controller('agentsCtrl', ['$scope', '$http', '$interval', 'Agent
 	
 	var refresh = $interval(function() {
 		getAgentList();
-	}, 5000);
+	}, 1000);
 	
 	$scope.$on('$destroy', function() {
 		$interval.cancel(refresh);
     });
 	
 	$scope.start = function(agentName, appName) {
+		console.log("시작합니다. " + agentName + ", " +  appName);
 		var startUrl = 'http://192.168.43.104:20308/control/' + agentName + '/' + appName + "/start"; 
 		$http.post(startUrl).
 		  success(function(data, status, headers, config) {
+		    console.log("성공 ");
 		  }).
 		  error(function(data, status, headers, config) {
+			  console.log("실패 ");
 		  });
 	};
 	$scope.restart = function(agentName, appName) {
+		console.log("재시작합니다. ");
 		var restartUrl = 'http://192.168.43.104:20308/control/' + agentName + '/' + appName + "/restart"; 
 		$http.post(restartUrl).
 		  success(function(data, status, headers, config) {
+		    console.log("성공 ");
 		  }).
 		  error(function(data, status, headers, config) {
+			  console.log("실패 ");
 		  });
 	};
 	$scope.stop = function(agentName, appName) {
+		console.log("정지합니다. ");
 		var stopUrl = 'http://192.168.43.104:20308/control/' + agentName + '/' + appName + "/stop"; 
 		$http.post(stopUrl).
 		  success(function(data, status, headers, config) {
+		    console.log("성공 ");
 		  }).
 		  error(function(data, status, headers, config) {
+			  console.log("실패 ");
 		  });
 	};
    
