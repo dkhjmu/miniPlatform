@@ -5,7 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MinionInfo implements Serializable{
-    private String url;
+	private static final long serialVersionUID = 1L;
+	private String url;
     private String name;
     private String status = "LIVE";
     private String path;

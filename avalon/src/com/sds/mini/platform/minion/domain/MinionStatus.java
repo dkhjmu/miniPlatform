@@ -3,7 +3,8 @@ package com.sds.mini.platform.minion.domain;
 import java.io.Serializable;
 
 public class MinionStatus implements Serializable{
-    String name;
+	private static final long serialVersionUID = 1L;
+	String name;
     String type;
     String status;
 

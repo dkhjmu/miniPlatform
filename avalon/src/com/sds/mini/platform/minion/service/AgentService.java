@@ -8,9 +8,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sds.mini.platform.minion.domain.MinionInfo;
-import com.sds.mini.platform.util.PropertyUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -21,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sds.mini.platform.minion.domain.MinionInfo;
+import com.sds.mini.platform.util.PropertyUtils;
 
 @Component
 public class AgentService {
