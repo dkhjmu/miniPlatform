@@ -1,6 +1,7 @@
 package com.sds.mini.platform.minion.service;
 
 import com.sds.mini.platform.minion.domain.MinionInfo;
+
 import org.junit.Test;
 
 import java.net.InetAddress;
@@ -29,7 +30,9 @@ public class AgentServiceTest {
     }
 
     @Test
-    public void testRemoveMinion() {
-
+    public void testRemoveMinion() throws InterruptedException {
+    	System.out.println("TestStart!");
+    	Thread.sleep(10000);
+    	System.out.println("Done!!!");
     }
 }
